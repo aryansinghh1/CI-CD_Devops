@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "name": "devops_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryansinghh1/CI-CD_Devops.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aryansinghh1/CI-CD_Devops/issues"
+  },
+  "homepage": "https://github.com/aryansinghh1/CI-CD_Devops#readme"
+}
