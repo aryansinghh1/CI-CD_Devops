@@ -17,8 +17,9 @@ WORKDIR /app
 # Copy node_modules and app from builder
 COPY --from=builder /app/node_modules ./node_modules
 
-# Copy application code
+# Copy application code and assets
 COPY app.js .
+COPY cicd-page.html .
 COPY package*.json ./
 
 # Expose port
