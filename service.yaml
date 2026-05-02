@@ -3,13 +3,14 @@ kind: Service
 metadata:
   name: devops-project-service
   labels:
-    app: devops-project # This matches your ServiceMonitor selector
+    app: devops-project
 spec:
+  type: NodePort
   selector:
     app: devops-project
   ports:
-    - name: http # Must match the 'port' name in monitor.yaml
+    - name: http
       protocol: TCP
       port: 80
       targetPort: 3000
-  type: LoadBalancer
+      nodePort: 30007
