@@ -299,6 +299,7 @@ pipeline {
 ### STEP 20: GitHub Webhook
 Add webhook in your GitHub repository settings:
 - **Payload URL**: `http://EC2-IP:8080/github-webhook/`
+- **Content Type**: application/json
 - **Events**: Push events
 
 **Purpose**: Automatically triggers Jenkins pipeline on code push
