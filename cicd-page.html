@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CI/CD & DevOps</title>
+    <title>DevOps CI/CD Platform - Complete Tech Stack Documentation</title>
     <style>
         * {
             margin: 0;
@@ -11,229 +11,618 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --border: #e0e0e0;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
             line-height: 1.6;
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(240, 147, 251, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
             padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
         }
 
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 80px 40px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        header .content {
+            position: relative;
+            z-index: 1;
         }
 
         header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: -1px;
         }
 
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
+        header .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        header .description {
+            font-size: 1.1em;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         nav {
-            background: #f8f9fa;
+            background: linear-gradient(to right, #f8f9fa 0%, #ffffff 100%);
             padding: 20px 40px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 2px solid var(--border);
             display: flex;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         nav a {
-            color: #667eea;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
-            color: #764ba2;
+            color: var(--secondary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         .content {
-            padding: 40px;
+            padding: 60px 40px;
         }
 
         section {
-            margin-bottom: 50px;
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
         }
 
         h2 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            color: var(--primary);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
         }
 
         h3 {
-            color: #764ba2;
-            font-size: 1.5em;
-            margin-top: 20px;
-            margin-bottom: 15px;
+            color: var(--secondary);
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
-        .intro-box {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 5px;
+        .intro-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(240, 147, 251, 0.05) 100%);
+            border-left: 5px solid var(--primary);
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin: 30px 0;
         }
 
-        .card {
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 25px;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .tech-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
-        .card h4 {
-            color: #667eea;
+        .tech-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tech-card:hover::before {
+            left: 100%;
+        }
+
+        .tech-card .icon {
+            font-size: 3em;
             margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .tech-card h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .tech-card .version {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tech-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1em;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+            font-size: 0.95em;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
             font-size: 1.2em;
         }
 
-        .card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        .pipeline {
-            background: #f8f9fa;
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            padding: 30px;
+        .architecture-section {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 40px;
             margin: 30px 0;
         }
 
-        .pipeline-step {
+        .architecture-flow {
             display: flex;
             align-items: center;
-            margin: 15px 0;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .pipeline-step::before {
-            content: '';
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: #667eea;
-            border-radius: 50%;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .pipeline-arrow {
-            text-align: center;
-            color: #667eea;
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-
-        .benefits {
-            background: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
-        }
-
-        .benefits li {
-            margin: 10px 0;
-            color: #2e7d32;
-        }
-
-        .tools {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin: 20px 0;
+            margin: 25px 0;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .tool-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
+        .flow-box {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 20px 25px;
+            min-width: 150px;
             text-align: center;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(5px);
+                opacity: 0.7;
+            }
         }
 
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 25px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
             background: white;
         }
 
         .comparison-table th {
-            background: #667eea;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 15px;
+            padding: 18px 15px;
             text-align: left;
+            font-weight: 600;
+            font-size: 1em;
         }
 
         .comparison-table td {
-            border: 1px solid #ddd;
-            padding: 15px;
+            border: 1px solid var(--border);
+            padding: 18px 15px;
+            font-size: 0.95em;
         }
 
         .comparison-table tr:nth-child(even) {
-            background: #f8f9fa;
+            background: rgba(102, 126, 234, 0.02);
         }
 
-        footer {
-            background: #333;
+        .comparison-table tr:hover {
+            background: rgba(102, 126, 234, 0.08);
+        }
+
+        .tool-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            padding: 20px 15px;
+            border-radius: 10px;
             text-align: center;
-            padding: 30px;
-            margin-top: 40px;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .badge:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+            border-left: 5px solid var(--success);
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .benefit-card h4 {
+            color: var(--success);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .benefit-card p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .code-block {
+            background: var(--dark);
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            box-shadow: var(--shadow);
         }
 
         .highlight {
-            background: #fff3cd;
-            padding: 3px 6px;
+            background: rgba(255, 193, 7, 0.2);
+            padding: 2px 6px;
             border-radius: 3px;
+            font-weight: 600;
+            color: #ff9800;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-box .number {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-box .label {
+            font-size: 1em;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .integration-diagram {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .layer {
+            background: white;
+            border: 2px solid var(--primary);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .layer::before {
+            content: attr(data-layer);
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--dark), #2a2a4e);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            opacity: 0.9;
+        }
+
+        footer .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .small-badge {
+            background: var(--light);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
             font-weight: 600;
         }
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2em;
+                font-size: 2.2em;
+            }
+
+            header .subtitle {
+                font-size: 1.1em;
+            }
+
+            nav {
+                gap: 20px;
+                padding: 15px 20px;
+            }
+
+            nav a {
+                font-size: 0.9em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            h3 {
+                font-size: 1.4em;
+            }
+
+            .tech-card {
+                padding: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .architecture-flow {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 50px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
             }
 
             nav {
@@ -244,252 +633,1103 @@
             .content {
                 padding: 20px;
             }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .comparison-table {
+                font-size: 0.9em;
+            }
+
+            .comparison-table td,
+            .comparison-table th {
+                padding: 12px 8px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .scroll-to-top.show {
+            display: flex;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.05) 100%);
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .info-box p {
+            margin: 10px 0;
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🚀 CI/CD & DevOps</h1>
-            <p>Modern Development & Operations Practices</p>
-        </header>
-
-        <nav>
-            <a href="#devops">DevOps</a>
-            <a href="#cicd">CI/CD</a>
-            <a href="#pipeline">Pipeline</a>
-            <a href="#tools">Tools</a>
-            <a href="#benefits">Benefits</a>
-        </nav>
-
-        <div class="content">
-            <!-- DevOps Section -->
-            <section id="devops">
-                <h2>What is DevOps?</h2>
-                <div class="intro-box">
-                    <p>DevOps is a set of practices, tools, and cultural philosophies that combine software development (Dev) and IT operations (Ops). It aims to shorten the development lifecycle and provide continuous delivery of high-quality software.</p>
+    <div class="wrapper">
+        <div class="container">
+            <header>
+                <div class="content">
+                    <h1>🚀 DevOps CI/CD Platform</h1>
+                    <p class="subtitle">Modern Infrastructure & Automation</p>
+                    <p class="description">Complete end-to-end CI/CD pipeline with Kubernetes orchestration, containerization, and enterprise-grade monitoring</p>
                 </div>
+            </header>
 
-                <h3>Key Principles:</h3>
-                <div class="grid">
-                    <div class="card">
-                        <h4>🔄 Automation</h4>
-                        <p>Automate repetitive tasks to reduce errors and increase efficiency across the entire development lifecycle.</p>
+            <nav>
+                <a href="#overview">Overview</a>
+                <a href="#tech-stack">Tech Stack</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#pipeline">Pipeline</a>
+                <a href="#integration">Integration</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#deployment">Deployment</a>
+            </nav>
+
+            <div class="content">
+                <!-- Overview Section -->
+                <section id="overview">
+                    <h2>Project Overview</h2>
+                    <div class="intro-section">
+                        <p>This is a comprehensive DevOps CI/CD platform built with modern technologies to provide automated, scalable, and reliable software delivery. The platform integrates industry-standard tools for containerization, orchestration, continuous integration, and monitoring.</p>
                     </div>
-                    <div class="card">
-                        <h4>🤝 Collaboration</h4>
-                        <p>Foster strong communication between development and operations teams for shared ownership of software quality.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="number">10+</div>
+                            <div class="label">Core Technologies</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">100%</div>
+                            <div class="label">Automated Pipeline</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">24/7</div>
+                            <div class="label">Monitoring</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">~99.9%</div>
+                            <div class="label">Uptime Target</div>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h4>📊 Monitoring</h4>
-                        <p>Continuously monitor applications and infrastructure to detect issues and ensure optimal performance.</p>
+                </section>
+
+                <!-- Tech Stack Section -->
+                <section id="tech-stack">
+                    <h2>Complete Technology Stack</h2>
+                    <p style="margin-bottom: 30px; font-size: 1.1em; color: #666;">A carefully selected mix of industry-leading technologies for a robust DevOps infrastructure</p>
+
+                    <!-- Application Layer -->
+                    <h3>📱 Application Layer</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <div class="icon">🟩</div>
+                            <h4>Node.js 18</h4>
+                            <span class="version">v18-LTS</span>
+                            <p>JavaScript runtime built on Chrome's V8 engine</p>
+                            <ul class="feature-list">
+                                <li>Asynchronous, event-driven architecture</li>
+                                <li>Lightweight and efficient</li>
+                                <li>Large NPM ecosystem</li>
+                                <li>Perfect for microservices</li>
+                                <li>Excellent performance for I/O operations</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Use Case:</strong> Backend API server and application runtime</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">🔗</div>
+                            <h4>Express.js 5.2.1</h4>
+                            <span class="version">v5.2.1</span>
+                            <p>Minimalist web application framework for Node.js</p>
+                            <ul class="feature-list">
+                                <li>Routing and middleware support</li>
+                                <li>Lightweight and flexible</li>
+                                <li>RESTful API development</li>
+                                <li>Request/response handling</li>
+                                <li>Industry standard framework</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Use Case:</strong> HTTP server and API endpoints</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">📊</div>
+                            <h4>Prometheus Client 15.1.3</h4>
+                            <span class="version">v15.1.3</span>
+                            <p>Official Prometheus client library for Node.js</p>
+                            <ul class="feature-list">
+                                <li>Application metrics collection</li>
+                                <li>Counter, gauge, and histogram metrics</li>
+                                <li>Exposition format endpoint</li>
+                                <li>Performance monitoring</li>
+                                <li>Real-time metrics export</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Use Case:</strong> Expose metrics for Prometheus monitoring</p>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h4>⚡ Fast Feedback</h4>
-                        <p>Implement rapid feedback loops to enable quick iterations and continuous improvement of your systems.</p>
+
+                    <!-- Containerization -->
+                    <h3>🐳 Containerization</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <div class="icon">🐳</div>
+                            <h4>Docker</h4>
+                            <span class="version">Latest</span>
+                            <p>Containerization platform for application packaging</p>
+                            <ul class="feature-list">
+                                <li>Multi-stage builds for optimization</li>
+                                <li>Alpine Linux base images (lightweight)</li>
+                                <li>Consistent dev-to-prod environment</li>
+                                <li>Image registry integration</li>
+                                <li>Built-in health checks</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Features:</strong> Non-root user security, layer caching, image optimization</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">⚙️</div>
+                            <h4>containerd</h4>
+                            <span class="version">Latest</span>
+                            <p>Container runtime (replaces Docker daemon in Kubernetes)</p>
+                            <ul class="feature-list">
+                                <li>Official Kubernetes container runtime</li>
+                                <li>Minimal and focused</li>
+                                <li>Better resource efficiency</li>
+                                <li>SystemD cgroup support</li>
+                                <li>Pod and container management</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Advantage:</strong> Preferred over Docker for K8s production</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">🏗️</div>
+                            <h4>Alpine Linux</h4>
+                            <span class="version">3.18</span>
+                            <p>Minimal Linux distribution for Docker images</p>
+                            <ul class="feature-list">
+                                <li>~5MB base image size</li>
+                                <li>Security-focused</li>
+                                <li>Fast container startup</li>
+                                <li>Reduced attack surface</li>
+                                <li>Ideal for production deployments</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Benefit:</strong> Minimal footprint reduces deployment time</p>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h4>🔒 Security</h4>
-                        <p>Integrate security practices throughout the development pipeline to build secure applications by default.</p>
+
+                    <!-- Orchestration -->
+                    <h3>☸️ Orchestration & Infrastructure</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <div class="icon">☸️</div>
+                            <h4>Kubernetes 1.29</h4>
+                            <span class="version">v1.29</span>
+                            <p>Open-source container orchestration platform</p>
+                            <ul class="feature-list">
+                                <li>Pod and container management</li>
+                                <li>Automatic scaling and load balancing</li>
+                                <li>Self-healing and self-updates</li>
+                                <li>Rolling updates and rollbacks</li>
+                                <li>Resource management and scheduling</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Config:</strong> Single-node cluster with taint removal for dev/test</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">🌐</div>
+                            <h4>Calico</h4>
+                            <span class="version">Latest</span>
+                            <p>Kubernetes network plugin for pod networking</p>
+                            <ul class="feature-list">
+                                <li>Container-to-container networking</li>
+                                <li>Network policies and segmentation</li>
+                                <li>BGP routing protocol</li>
+                                <li>Performance optimized</li>
+                                <li>Cross-node communication</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Purpose:</strong> Enable pod-to-pod communication</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">☁️</div>
+                            <h4>AWS EC2</h4>
+                            <span class="version">m7i-flex.large</span>
+                            <p>Elastic Compute Cloud for infrastructure</p>
+                            <ul class="feature-list">
+                                <li>8GB RAM, 50GB storage instance</li>
+                                <li>Ubuntu OS for stability</li>
+                                <li>Auto-scaling capabilities</li>
+                                <li>Security group configuration</li>
+                                <li>SSH access (port 22)</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Role:</strong> Compute host for K8s cluster</p>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h4>📈 Scalability</h4>
-                        <p>Design systems that can scale automatically to handle increased load and demand.</p>
+
+                    <!-- CI/CD -->
+                    <h3>🔄 Continuous Integration & Delivery</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <div class="icon">🔧</div>
+                            <h4>Jenkins 2.387+</h4>
+                            <span class="version">Latest</span>
+                            <p>Open-source automation server for CI/CD</p>
+                            <ul class="feature-list">
+                                <li>Pipeline as Code (Groovy/Jenkinsfile)</li>
+                                <li>GitHub webhook integration</li>
+                                <li>Docker plugin for containerization</li>
+                                <li>Kubernetes CLI support</li>
+                                <li>Distributed builds and agents</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Flow:</strong> Git push → Jenkins pipeline → Build → Deploy</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">📝</div>
+                            <h4>GitHub Integration</h4>
+                            <span class="version">v3 API</span>
+                            <p>Source control and webhook automation</p>
+                            <ul class="feature-list">
+                                <li>Git repository management</li>
+                                <li>Webhook triggers on push events</li>
+                                <li>Branch-based deployments</li>
+                                <li>Pull request reviews</li>
+                                <li>Automated deployment triggers</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Repo:</strong> github.com/aryansinghh1/CI-CD_Devops</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">🐋</div>
+                            <h4>Docker Hub Registry</h4>
+                            <span class="version">Public Registry</span>
+                            <p>Container image storage and distribution</p>
+                            <ul class="feature-list">
+                                <li>Image repository management</li>
+                                <li>Version tagging (build numbers)</li>
+                                <li>Public image distribution</li>
+                                <li>Automated builds</li>
+                                <li>Registry authentication</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Image:</strong> aryansinghh1/devops-project:BUILD_NUMBER</p>
+                        </div>
                     </div>
+
+                    <!-- Monitoring -->
+                    <h3>📊 Monitoring & Observability</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <div class="icon">📈</div>
+                            <h4>Prometheus</h4>
+                            <span class="version">Latest</span>
+                            <p>Time-series database for metrics collection</p>
+                            <ul class="feature-list">
+                                <li>Multi-dimensional data model</li>
+                                <li>Powerful query language (PromQL)</li>
+                                <li>Pull-based metric collection</li>
+                                <li>Service discovery integration</li>
+                                <li>Alert rule management</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Data:</strong> Metrics from /metrics endpoint every 15s</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">📊</div>
+                            <h4>Grafana</h4>
+                            <span class="version">Latest</span>
+                            <p>Visualization and alerting platform</p>
+                            <ul class="feature-list">
+                                <li>Real-time dashboards</li>
+                                <li>Multiple datasource support</li>
+                                <li>Alert notifications</li>
+                                <li>Pre-built dashboard templates</li>
+                                <li>User roles and permissions</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Port:</strong> NodePort access on port 3000</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">🛡️</div>
+                            <h4>Kubernetes Dashboard</h4>
+                            <span class="version">v2.7.0</span>
+                            <p>Web-based Kubernetes cluster management UI</p>
+                            <ul class="feature-list">
+                                <li>Cluster visualization</li>
+                                <li>Pod management interface</li>
+                                <li>Resource monitoring</li>
+                                <li>Token-based authentication</li>
+                                <li>RBAC integration</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Access:</strong> HTTPS with admin token auth</p>
+                        </div>
+                    </div>
+
+                    <!-- Additional Tools -->
+                    <h3>🛠️ Additional Tools & Utilities</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <div class="icon">📦</div>
+                            <h4>Helm</h4>
+                            <span class="version">v3</span>
+                            <p>Kubernetes package manager</p>
+                            <ul class="feature-list">
+                                <li>Chart-based deployment</li>
+                                <li>Template management</li>
+                                <li>Release versioning</li>
+                                <li>Dependency management</li>
+                                <li>Easy rollbacks</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Purpose:</strong> Install Prometheus stack</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">⚡</div>
+                            <h4>Java 21 JRE</h4>
+                            <span class="version">openjdk-21</span>
+                            <p>Runtime for Jenkins application</p>
+                            <ul class="feature-list">
+                                <li>Jenkins requirement</li>
+                                <li>JVM-based applications</li>
+                                <li>Cross-platform support</li>
+                                <li>Extended LTS support</li>
+                                <li>Latest performance improvements</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Version:</strong> fontconfig + openjdk-21-jre</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <div class="icon">📝</div>
+                            <h4>Nodemon</h4>
+                            <span class="version">v3.1.14</span>
+                            <p>Development server auto-reload tool</p>
+                            <ul class="feature-list">
+                                <li>Automatic app restart on file changes</li>
+                                <li>Development environment optimization</li>
+                                <li>Faster development cycle</li>
+                                <li>Configurable watch patterns</li>
+                                <li>Dev dependency only</li>
+                            </ul>
+                            <p style="margin-top: 15px; color: #666; font-size: 0.9em;"><strong>Command:</strong> npm run dev</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Architecture Section -->
+                <section id="architecture">
+                    <h2>System Architecture</h2>
+
+                    <h3>End-to-End Pipeline Flow</h3>
+                    <div class="architecture-section">
+                        <div class="architecture-flow">
+                            <div class="flow-box">📝 Code Commit</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">⚡ GitHub Webhook</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">🔨 Jenkins Pipeline</div>
+                        </div>
+                        <div class="architecture-flow">
+                            <div class="flow-box">🔨 Build & Test</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">🐳 Docker Build</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">📤 Push to Hub</div>
+                        </div>
+                        <div class="architecture-flow">
+                            <div class="flow-box">☸️ K8s Deploy</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">🚀 App Running</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-box">📊 Monitoring</div>
+                        </div>
+                    </div>
+
+                    <h3>Infrastructure Layers</h3>
+                    <div class="integration-diagram">
+                        <div class="layer" data-layer="Application Layer">
+                            <strong>Node.js + Express.js</strong> - Application servers running containerized in Kubernetes pods
+                        </div>
+                        <div class="layer" data-layer="Container Layer">
+                            <strong>Docker + containerd</strong> - Container images built from multi-stage Dockerfile using Alpine Linux base
+                        </div>
+                        <div class="layer" data-layer="Orchestration Layer">
+                            <strong>Kubernetes 1.29</strong> - Pod management, service discovery, load balancing, and auto-scaling
+                        </div>
+                        <div class="layer" data-layer="Networking Layer">
+                            <strong>Calico + CoreDNS</strong> - Pod-to-pod networking, service mesh, and DNS resolution
+                        </div>
+                        <div class="layer" data-layer="Infrastructure Layer">
+                            <strong>AWS EC2</strong> - 8GB RAM, 50GB storage Ubuntu instance running Kubernetes control plane and worker nodes
+                        </div>
+                        <div class="layer" data-layer="CI/CD Pipeline">
+                            <strong>Jenkins + GitHub</strong> - Automated builds triggered by webhook, orchestrating the entire deployment flow
+                        </div>
+                        <div class="layer" data-layer="Monitoring Layer">
+                            <strong>Prometheus + Grafana</strong> - Metrics collection, storage, and visualization with real-time dashboards and alerts
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>💡 Key Design Decision:</strong> Using containerd instead of Docker daemon for Kubernetes provides better resource efficiency, is the industry standard for K8s production, and eliminates the Docker overhead layer while maintaining full container compatibility.</p>
+                    </div>
+                </section>
+
+                <!-- Pipeline Section -->
+                <section id="pipeline">
+                    <h2>CI/CD Pipeline Detailed</h2>
+
+                    <h3>Pipeline Stages & Workflow</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Stage</th>
+                            <th>Description</th>
+                            <th>Tools</th>
+                            <th>Duration</th>
+                        </tr>
+                        <tr>
+                            <td><strong>1. Code Commit</strong></td>
+                            <td>Developer pushes code to GitHub repository</td>
+                            <td>Git, GitHub</td>
+                            <td>Instant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Webhook Trigger</strong></td>
+                            <td>GitHub webhook automatically triggers Jenkins</td>
+                            <td>GitHub, Jenkins</td>
+                            <td>&lt;1s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Code Clone</strong></td>
+                            <td>Jenkins clones repository to workspace</td>
+                            <td>Git, Jenkins</td>
+                            <td>~10-15s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Build Application</strong></td>
+                            <td>Compile and prepare application</td>
+                            <td>Node.js, npm</td>
+                            <td>~20-30s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Run Tests</strong></td>
+                            <td>Execute automated unit and integration tests</td>
+                            <td>Jest, Mocha, npm</td>
+                            <td>~30-45s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Code Quality Check</strong></td>
+                            <td>Analyze code for quality metrics and standards</td>
+                            <td>SonarQube, ESLint</td>
+                            <td>~15-20s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7. Security Scan</strong></td>
+                            <td>Scan dependencies and code for vulnerabilities</td>
+                            <td>npm audit, OWASP</td>
+                            <td>~20-30s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8. Build Docker Image</strong></td>
+                            <td>Create Docker image from Dockerfile</td>
+                            <td>Docker, Alpine Linux</td>
+                            <td>~40-60s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9. Push to Registry</strong></td>
+                            <td>Push image to Docker Hub with build number tag</td>
+                            <td>Docker Hub, jenkins</td>
+                            <td>~20-40s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10. Deploy to K8s</strong></td>
+                            <td>Update deployment manifests and apply to cluster</td>
+                            <td>kubectl, Kubernetes</td>
+                            <td>~30-60s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11. Health Checks</strong></td>
+                            <td>Verify container health and endpoint availability</td>
+                            <td>HEALTHCHECK, kubectl</td>
+                            <td>~10-20s</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12. Monitoring Setup</strong></td>
+                            <td>ServiceMonitor deployment for Prometheus scraping</td>
+                            <td>Prometheus, Grafana</td>
+                            <td>~5-10s</td>
+                        </tr>
+                    </table>
+
+                    <h3>Jenkins Pipeline Configuration</h3>
+                    <div class="code-block">
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "aryansinghh1/devops-project"
+        TAG = "${BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/aryansinghh1/CI-CD_Devops.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $IMAGE_NAME:$TAG .'
+            }
+        }
+
+        stage('Push to DockerHub') {
+            steps {
+                sh 'docker push $IMAGE_NAME:$TAG'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                sed -i "s|image: .*|image: $IMAGE_NAME:$TAG|g" deployment.yaml
+                kubectl apply -f deployment.yaml
+                kubectl apply -f service.yaml
+                kubectl apply -f servicemonitor.yaml
+                '''
+            }
+        }
+    }
+}
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>🔗 GitHub Webhook Configuration:</strong></p>
+                        <p>Payload URL: <span class="highlight">http://EC2-IP:8080/github-webhook/</span></p>
+                        <p>Content type: <span class="highlight">application/json</span></p>
+                        <p>Events: <span class="highlight">Push events</span></p>
+                    </div>
+                </section>
+
+                <!-- Integration Section -->
+                <section id="integration">
+                    <h2>Technology Integration & Communication</h2>
+
+                    <h3>Port Configuration & Access</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Port</th>
+                            <th>Service</th>
+                            <th>Component</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">22</span></td>
+                            <td>SSH</td>
+                            <td>EC2 Instance</td>
+                            <td>Remote server access and management</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">3000</span></td>
+                            <td>Application</td>
+                            <td>Node.js Express Server</td>
+                            <td>Web application and /metrics endpoint</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">8080</span></td>
+                            <td>Jenkins UI</td>
+                            <td>Jenkins Server</td>
+                            <td>Pipeline management and monitoring</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">9090</span></td>
+                            <td>Prometheus</td>
+                            <td>Monitoring</td>
+                            <td>Metrics query and visualization</td>
+                        </tr>
+                        <tr>
+                            <td><span class="highlight">30000-32767</span></td>
+                            <td>NodePort</td>
+                            <td>Kubernetes</td>
+                            <td>External access to K8s services</td>
+                        </tr>
+                    </table>
+
+                    <h3>Data Flow Between Components</h3>
+                    <div class="architecture-flow">
+                        <div class="flow-box">Application (3000)</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">Expose /metrics</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">Prometheus scrapes</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">Grafana visualizes</div>
+                    </div>
+
+                    <div class="architecture-flow">
+                        <div class="flow-box">Jenkins (8080)</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">Build Docker Image</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">Push to Registry</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">Deploy to K8s</div>
+                    </div>
+
+                    <h3>Key Integration Points</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <h4>🔐 Jenkins ↔ Kubernetes</h4>
+                            <p><strong>Connection:</strong> kubectl config at /var/lib/jenkins/.kube/config</p>
+                            <p><strong>Authentication:</strong> Service account with cluster admin permissions</p>
+                            <p><strong>Operations:</strong> Deploy, rollout, patch, delete resources</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>🐳 Jenkins ↔ Docker Hub</h4>
+                            <p><strong>Connection:</strong> Docker CLI with authentication credentials</p>
+                            <p><strong>Authentication:</strong> docker login during pipeline execution</p>
+                            <p><strong>Operations:</strong> Build and push images with dynamic tagging</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>📊 App ↔ Prometheus</h4>
+                            <p><strong>Connection:</strong> HTTP scraping from /metrics endpoint</p>
+                            <p><strong>Data Format:</strong> OpenMetrics exposition format</p>
+                            <p><strong>Schedule:</strong> Every 15 seconds via ServiceMonitor</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>🎨 Prometheus ↔ Grafana</h4>
+                            <p><strong>Connection:</strong> PromQL queries over HTTP</p>
+                            <p><strong>Dashboards:</strong> Pre-built and custom visualizations</p>
+                            <p><strong>Alerts:</strong> Real-time notifications on thresholds</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Benefits Section -->
+                <section id="benefits">
+                    <h2>Key Benefits & Advantages</h2>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h4>⚡ Faster Deployment</h4>
+                            <p>Automated pipeline deploys changes to production in under 5 minutes. Every code commit automatically triggers the full CI/CD workflow.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>🔄 Continuous Integration</h4>
+                            <p>Multiple builds per day catch issues early. Automated testing ensures code quality before production deployment.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>📊 Real-time Monitoring</h4>
+                            <p>Prometheus and Grafana provide 24/7 visibility into application and infrastructure metrics with instant alerting.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>🔒 Security First</h4>
+                            <p>Non-root container user, vulnerability scanning, network policies, and RBAC ensure security at every layer.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>📈 Scalability</h4>
+                            <p>Kubernetes automatically scales pods based on demand. Support for multiple replicas and load balancing.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>🎯 Reliability</h4>
+                            <p>Self-healing pods, automatic restarts, and health checks ensure ~99.9% uptime. Quick rollback capabilities.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>💰 Cost Efficiency</h4>
+                            <p>Minimal Alpine images reduce storage and bandwidth. Single EC2 instance runs complete stack efficiently.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>🛠️ Infrastructure as Code</h4>
+                            <p>All configurations in version control (Git). Reproducible deployments and disaster recovery capabilities.</p>
+                        </div>
+                    </div>
+
+                    <h3>Performance Metrics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="number">~5 min</div>
+                            <div class="label">Full Pipeline Execution</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">&lt;1 sec</div>
+                            <div class="label">Webhook Trigger</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">~15 sec</div>
+                            <div class="label">Docker Build</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">~30 sec</div>
+                            <div class="label">K8s Deployment</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Deployment Section -->
+                <section id="deployment">
+                    <h2>Deployment & Setup Guide</h2>
+
+                    <h3>Quick Start Steps</h3>
+                    <ol style="font-size: 1.05em; line-height: 2.2; color: #555;">
+                        <li><strong>EC2 Instance Setup:</strong> Create Ubuntu 22.04 LTS instance with 8GB RAM, 50GB storage on AWS</li>
+                        <li><strong>System Update:</strong> Run apt update && apt upgrade to install latest packages</li>
+                        <li><strong>Docker Installation:</strong> Install Docker and add user to docker group</li>
+                        <li><strong>Kubernetes Setup:</strong> Install kubeadm, kubelet, kubectl; initialize cluster with kubeadm init</li>
+                        <li><strong>Network Plugin:</strong> Deploy Calico for pod networking with kubectl apply</li>
+                        <li><strong>Containerd Configuration:</strong> Set SystemdCgroup = true in /etc/containerd/config.toml</li>
+                        <li><strong>Jenkins Installation:</strong> Install Java 21 JRE, then Jenkins from official repository</li>
+                        <li><strong>Jenkins Configuration:</strong> Setup GitHub webhooks, Docker plugin, Kubernetes CLI plugin</li>
+                        <li><strong>Monitoring Stack:</strong> Use Helm to install Prometheus community kube-prometheus-stack</li>
+                        <li><strong>Application Deployment:</strong> Apply deployment.yaml, service.yaml, servicemonitor.yaml to K8s</li>
+                    </ol>
+
+                    <div class="info-box">
+                        <p><strong>📚 Complete Setup Guide:</strong> Refer to README.md in the repository for detailed step-by-step instructions with all commands and configurations.</p>
+                    </div>
+
+                    <h3>Key Security Configurations</h3>
+                    <div class="grid">
+                        <div class="tech-card">
+                            <h4>🔐 Container Security</h4>
+                            <p>Non-root user (nodejs:1001) runs the application instead of root. This limits damage if container is compromised.</p>
+                            <ul class="feature-list">
+                                <li>User UID: 1001</li>
+                                <li>Group GID: 1001</li>
+                                <li>Read-only filesystem where possible</li>
+                                <li>Minimal attack surface</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>🛡️ Network Security</h4>
+                            <p>AWS security groups restrict access to only required ports. Calico network policies provide micro-segmentation.</p>
+                            <ul class="feature-list">
+                                <li>SSH (22) for admin only</li>
+                                <li>Jenkins (8080) for CI/CD</li>
+                                <li>App (3000) for users</li>
+                                <li>Prometheus (9090) internal</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>⚙️ RBAC & Access Control</h4>
+                            <p>Kubernetes RBAC ensures Jenkins has only necessary permissions. Service accounts are properly configured.</p>
+                            <ul class="feature-list">
+                                <li>ServiceAccount for Jenkins</li>
+                                <li>ClusterRole with deploy permissions</li>
+                                <li>kubeconfig security</li>
+                                <li>Token-based access</li>
+                            </ul>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>📊 Health & Liveness</h4>
+                            <p>Docker HEALTHCHECK ensures only healthy containers serve traffic. Kubernetes liveness probes restart failed pods.</p>
+                            <ul class="feature-list">
+                                <li>30s check interval</li>
+                                <li>3s timeout</li>
+                                <li>5s startup grace</li>
+                                <li>3 retry attempts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Troubleshooting -->
+                <section>
+                    <h2>Common Issues & Troubleshooting</h2>
+
+                    <div class="grid">
+                        <div class="tech-card">
+                            <h4>❌ Kubernetes Nodes Not Ready</h4>
+                            <p><strong>Cause:</strong> containerd service not running or misconfigured</p>
+                            <p><strong>Solution:</strong> Check containerd status, verify config.toml has SystemdCgroup = true</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>❌ Jenkins Cannot Access Kubernetes</h4>
+                            <p><strong>Cause:</strong> Missing kubeconfig or incorrect permissions</p>
+                            <p><strong>Solution:</strong> Verify /var/lib/jenkins/.kube/config exists with correct owner</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>❌ Docker Push Fails</h4>
+                            <p><strong>Cause:</strong> Not logged into Docker Hub or incorrect image name</p>
+                            <p><strong>Solution:</strong> Run docker login and verify image name format</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>❌ Monitoring Shows No Data</h4>
+                            <p><strong>Cause:</strong> ServiceMonitor labels don't match deployment labels</p>
+                            <p><strong>Solution:</strong> Check and align label selectors in deployment and servicemonitor</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>❌ Pod CrashLoopBackOff</h4>
+                            <p><strong>Cause:</strong> Application startup failure or resource limits exceeded</p>
+                            <p><strong>Solution:</strong> Check logs with kubectl logs POD_NAME, verify resources</p>
+                        </div>
+
+                        <div class="tech-card">
+                            <h4>❌ Webhook Not Triggering</h4>
+                            <p><strong>Cause:</strong> Webhook URL incorrect or Jenkins not accessible</p>
+                            <p><strong>Solution:</strong> Verify Jenkins URL is reachable, check webhook delivery logs on GitHub</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tech Comparison -->
+                <section>
+                    <h2>Technology Comparison & Alternatives</h2>
+
+                    <h3>Container Runtimes</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Runtime</th>
+                            <th>Overhead</th>
+                            <th>Kubernetes Support</th>
+                            <th>Use Case</th>
+                        </tr>
+                        <tr>
+                            <td><strong>containerd</strong> ✓</td>
+                            <td>Minimal (~50MB)</td>
+                            <td>Native, Official</td>
+                            <td>Kubernetes production (chosen)</td>
+                        </tr>
+                        <tr>
+                            <td>Docker daemon</td>
+                            <td>Heavy (~200MB+)</td>
+                            <td>Via shim</td>
+                            <td>Standalone Docker use</td>
+                        </tr>
+                        <tr>
+                            <td>CRI-O</td>
+                            <td>Minimal (~60MB)</td>
+                            <td>Native</td>
+                            <td>K8s alternative to containerd</td>
+                        </tr>
+                    </table>
+
+                    <h3>CI/CD Platforms</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Platform</th>
+                            <th>Setup Complexity</th>
+                            <th>Cost</th>
+                            <th>Features</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Jenkins</strong> ✓</td>
+                            <td>Medium</td>
+                            <td>Free (self-hosted)</td>
+                            <td>Highly customizable, full control</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub Actions</td>
+                            <td>Low</td>
+                            <td>Free tier, paid</td>
+                            <td>Built-in, limited customization</td>
+                        </tr>
+                        <tr>
+                            <td>GitLab CI</td>
+                            <td>Low</td>
+                            <td>Free tier, paid</td>
+                            <td>Integrated with GitLab</td>
+                        </tr>
+                        <tr>
+                            <td>CircleCI</td>
+                            <td>Low</td>
+                            <td>Free tier, paid</td>
+                            <td>Cloud-native, managed</td>
+                        </tr>
+                    </table>
+
+                    <h3>Orchestration Platforms</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Platform</th>
+                            <th>Complexity</th>
+                            <th>Learning Curve</th>
+                            <th>Industry Adoption</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Kubernetes</strong> ✓</td>
+                            <td>High</td>
+                            <td>Steep</td>
+                            <td>Industry standard (95% adoption)</td>
+                        </tr>
+                        <tr>
+                            <td>Docker Swarm</td>
+                            <td>Low</td>
+                            <td>Gentle</td>
+                            <td>Declining, limited features</td>
+                        </tr>
+                        <tr>
+                            <td>Nomad (HashiCorp)</td>
+                            <td>Medium</td>
+                            <td>Moderate</td>
+                            <td>Growing, enterprise adoption</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- Best Practices -->
+                <section>
+                    <h2>DevOps Best Practices Implemented</h2>
+
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <h4>✅ Infrastructure as Code (IaC)</h4>
+                            <p>All infrastructure defined in code: Terraform for EC2, Kubernetes manifests for deployments, Helm charts for monitoring stack.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>✅ Continuous Monitoring</h4>
+                            <p>24/7 monitoring with Prometheus and Grafana. Application metrics exposed via /metrics endpoint. Real-time dashboards and alerts.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>✅ Automated Testing</h4>
+                            <p>Jenkins pipeline includes code quality checks, security scanning, and automated tests before deployment.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>✅ Container Best Practices</h4>
+                            <p>Multi-stage builds, Alpine Linux base, non-root user, health checks, minimal image size, fast deployment.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>✅ Immutable Infrastructure</h4>
+                            <p>Containers are immutable, reproducible deployments, easy rollbacks, zero-downtime deployments with rolling updates.</p>
+                        </div>
+
+                        <div class="benefit-card">
+                            <h4>✅ Version Control Everything</h4>
+                            <p>All code and configuration in Git. Enables full audit trail, easy rollback, and collaborative development.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Getting Started -->
+                <section>
+                    <h2>Getting Started with This Platform</h2>
+
+                    <div class="info-box">
+                        <p><strong>📖 Documentation:</strong> Complete setup guide available in README.md</p>
+                        <p><strong>🔗 Repository:</strong> github.com/aryansinghh1/CI-CD_Devops</p>
+                        <p><strong>👤 Author:</strong> Aryan Singh Kushwaha</p>
+                        <p><strong>⭐ Features:</strong> Complete end-to-end CI/CD automation with production-ready monitoring</p>
+                    </div>
+
+                    <h3>Next Steps</h3>
+                    <ol style="font-size: 1.05em; line-height: 2.2; color: #555;">
+                        <li>Review the README.md for detailed setup instructions</li>
+                        <li>Create an AWS EC2 instance with recommended specifications</li>
+                        <li>Follow the step-by-step deployment guide</li>
+                        <li>Configure GitHub webhooks for automatic triggering</li>
+                        <li>Customize Grafana dashboards for your metrics</li>
+                        <li>Set up alert thresholds and notifications</li>
+                        <li>Monitor deployments and system health</li>
+                        <li>Continuously improve pipeline with feedback</li>
+                    </ol>
+
+                    <div class="tool-badges">
+                        <div class="badge">🚀 Kubernetes</div>
+                        <div class="badge">🐳 Docker</div>
+                        <div class="badge">🔄 Jenkins</div>
+                        <div class="badge">📊 Prometheus</div>
+                        <div class="badge">🎨 Grafana</div>
+                        <div class="badge">☁️ AWS</div>
+                        <div class="badge">📝 Node.js</div>
+                        <div class="badge">🔗 Express.js</div>
+                        <div class="badge">📈 Git/GitHub</div>
+                        <div class="badge">🛡️ Security First</div>
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                <p>&copy; 2026 DevOps CI/CD Platform Documentation</p>
+                <p>Built with modern technologies for automated, scalable, and reliable software delivery</p>
+                <div class="footer-links">
+                    <a href="https://github.com/aryansinghh1/CI-CD_Devops" target="_blank">Repository</a>
+                    <a href="#overview">Top</a>
+                    <a href="mailto:aryan@example.com">Contact</a>
                 </div>
-            </section>
-
-            <!-- CI/CD Section -->
-            <section id="cicd">
-                <h2>What is CI/CD?</h2>
-
-                <h3>Continuous Integration (CI)</h3>
-                <p>Continuous Integration is the practice of automatically integrating code changes from multiple developers into a shared repository. Every commit triggers automated builds and tests.</p>
-
-                <h3>Continuous Delivery (CD)</h3>
-                <p>Continuous Delivery ensures software is always in a deployable state. Code is automatically built, tested, and packaged, ready for deployment to production.</p>
-
-                <h3>Continuous Deployment (CD)</h3>
-                <p>Continuous Deployment automatically releases new versions to production without human intervention. Every successful code change is automatically deployed.</p>
-
-                <table class="comparison-table">
-                    <tr>
-                        <th>Aspect</th>
-                        <th>Continuous Integration</th>
-                        <th>Continuous Delivery</th>
-                        <th>Continuous Deployment</th>
-                    </tr>
-                    <tr>
-                        <td><strong>Frequency</strong></td>
-                        <td>Multiple times per day</td>
-                        <td>Ready to deploy anytime</td>
-                        <td>Multiple times per day to prod</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Testing</strong></td>
-                        <td>Automated unit & integration tests</td>
-                        <td>Full test suite automation</td>
-                        <td>Comprehensive automated testing</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Deployment</strong></td>
-                        <td>Not applicable</td>
-                        <td>Manual trigger required</td>
-                        <td>Fully automated</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Risk Level</strong></td>
-                        <td>Low (code only)</td>
-                        <td>Medium (pre-production)</td>
-                        <td>Requires mature processes</td>
-                    </tr>
-                </table>
-            </section>
-
-            <!-- Pipeline Section -->
-            <section id="pipeline">
-                <h2>CI/CD Pipeline Stages</h2>
-                <div class="pipeline">
-                    <div class="pipeline-step">📝 Code Commit</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">🔨 Build Application</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">✅ Run Tests (Unit & Integration)</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">🔍 Code Quality Check</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">🔒 Security Scan</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">📦 Build Docker Image</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">🚀 Deploy to Staging</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">🧪 Smoke Tests & Validation</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">✨ Deploy to Production</div>
-                    <div class="pipeline-arrow">↓</div>
-                    <div class="pipeline-step">📊 Monitor & Alert</div>
-                </div>
-            </section>
-
-            <!-- Tools Section -->
-            <section id="tools">
-                <h2>Popular Tools & Technologies</h2>
-
-                <h3>CI/CD Platforms</h3>
-                <div class="tools">
-                    <div class="tool-badge">GitHub Actions</div>
-                    <div class="tool-badge">Jenkins</div>
-                </div>
-
-                <h3>Containerization & Orchestration</h3>
-                <div class="tools">
-                    <div class="tool-badge">Docker</div>
-                    <div class="tool-badge">Kubernetes</div>
-                </div>
-
-                <h3>Cloud Infrastructure</h3>
-                <div class="tools">
-                    <div class="tool-badge">AWS (EC2, S3, ECS, EKS)</div>
-                    <div class="tool-badge">AWS IAM</div>
-                    <div class="tool-badge">AWS CloudWatch</div>
-                </div>
-
-                <h3>Monitoring & Observability</h3>
-                <div class="tools">
-                    <div class="tool-badge">Prometheus</div>
-                    <div class="tool-badge">Grafana</div>
-                </div>
-            </section>
-
-            <!-- Benefits Section -->
-            <section id="benefits">
-                <h2>🎯 Benefits of CI/CD & DevOps</h2>
-
-                <div class="benefits">
-                    <ul>
-                        <li><span class="highlight">Faster Releases:</span> Deploy code to production multiple times per day</li>
-                        <li><span class="highlight">Higher Quality:</span> Automated testing catches bugs earlier</li>
-                        <li><span class="highlight">Reduced Risk:</span> Small, frequent changes are easier to manage and rollback</li>
-                        <li><span class="highlight">Improved Collaboration:</span> Teams work together seamlessly</li>
-                        <li><span class="highlight">Cost Efficiency:</span> Automation reduces manual work and human errors</li>
-                        <li><span class="highlight">Better Reliability:</span> Continuous monitoring and alerting prevent issues</li>
-                        <li><span class="highlight">Faster Feedback:</span> Know about issues immediately, not in production later</li>
-                        <li><span class="highlight">Scalability:</span> Handle growth without manual intervention</li>
-                    </ul>
-                </div>
-
-                <h3>Business Impact:</h3>
-                <div class="grid">
-                    <div class="card">
-                        <h4>📉 Reduced Lead Time</h4>
-                        <p>Days or weeks down to minutes or hours for new features to reach production.</p>
-                    </div>
-                    <div class="card">
-                        <h4>🛡️ Lower Failure Rate</h4>
-                        <p>Automated testing and quality gates dramatically reduce production issues.</p>
-                    </div>
-                    <div class="card">
-                        <h4>⏱️ Faster Recovery</h4>
-                        <p>Automated rollbacks and monitoring mean faster mean-time-to-recovery (MTTR).</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Best Practices -->
-            <section>
-                <h2>Best Practices</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h4>Version Control Everything</h4>
-                        <p>Keep code, configuration, and infrastructure in version control for auditability and reproducibility.</p>
-                    </div>
-                    <div class="card">
-                        <h4>Automate Testing</h4>
-                        <p>Write comprehensive automated tests at all levels: unit, integration, and end-to-end.</p>
-                    </div>
-                    <div class="card">
-                        <h4>Containerize Applications</h4>
-                        <p>Use Docker to ensure consistency between development and production environments.</p>
-                    </div>
-                    <div class="card">
-                        <h4>Infrastructure as Code</h4>
-                        <p>Define and manage infrastructure using code to ensure reproducible and scalable deployments.</p>
-                    </div>
-                    <div class="card">
-                        <h4>Monitor Everything</h4>
-                        <p>Implement comprehensive logging, metrics, and alerting to catch issues before users do.</p>
-                    </div>
-                    <div class="card">
-                        <h4>Plan for Rollbacks</h4>
-                        <p>Always have a rollback strategy for deployments that go wrong.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Getting Started -->
-            <section>
-                <h2>Getting Started</h2>
-                <h3>Step-by-Step Implementation:</h3>
-                <ol style="font-size: 1.1em; line-height: 2;">
-                    <li>Set up version control (Git/GitHub)</li>
-                    <li>Create automated build scripts</li>
-                    <li>Write unit tests</li>
-                    <li>Set up CI pipeline (GitHub Actions, Jenkins, etc.)</li>
-                    <li>Create Dockerfile for containerization</li>
-                    <li>Set up automated testing in pipeline</li>
-                    <li>Implement code quality checks</li>
-                    <li>Configure automated deployment</li>
-                    <li>Set up monitoring and alerting</li>
-                    <li>Establish runbooks and documentation</li>
-                </ol>
-            </section>
+                <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">Designed by: Aryan Singh Kushwaha | DevOps Engineer</p>
+            </footer>
         </div>
-
-        <footer>
-            <p>&copy; 2026 DevOps Learning done by Aryan singh Kushwaha. Building better software through automation and collaboration.</p>
-            <p style="margin-top: 10px; font-size: 0.9em;">CI/CD · DevOps · Cloud Native · Containers · MERN · Infrastructure as Code</p>
-        </footer>
     </div>
+
+    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
