@@ -1571,19 +1571,6 @@
               </tr>
             </table>
 
-            <h3>Jenkins Pipeline Configuration</h3>
-            <div class="code-block">
-              pipeline { agent any environment { IMAGE_NAME =
-              "aryansinghh1/devops-project" TAG = "${BUILD_NUMBER}" } stages {
-              stage('Clone Code') { steps { git
-              'https://github.com/aryansinghh1/CI-CD_Devops.git' } }
-              stage('Build Docker Image') { steps { sh 'docker build -t
-              $IMAGE_NAME:$TAG .' } } stage('Push to DockerHub') { steps { sh
-              'docker push $IMAGE_NAME:$TAG' } } stage('Deploy to Kubernetes') {
-              steps { sh ''' sed -i "s|image: .*|image: $IMAGE_NAME:$TAG|g"
-              deployment.yaml kubectl apply -f deployment.yaml kubectl apply -f
-              service.yaml kubectl apply -f servicemonitor.yaml ''' } } } }
-            </div>
 
             <div class="info-box">
               <p><strong>🔗 GitHub Webhook Configuration:</strong></p>
