@@ -33,9 +33,9 @@ resource "aws_instance" "devops-instance" {
   }
 }
 ```
-terraform init
-terraform plan
-terraform apply
+- terraform init
+- terraform plan
+- terraform apply
 
 Create an Ubuntu EC2 instance with these specifications:
 - OS: Ubuntu
